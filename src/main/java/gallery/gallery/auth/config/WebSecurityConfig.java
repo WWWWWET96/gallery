@@ -1,23 +1,13 @@
-package gallery.gallery.auth;
+package gallery.gallery.auth.config;
 
-import gallery.gallery.common.Enum.AccountStatus;
-import gallery.gallery.common.Enum.Role;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
 
 /**
  * @Configuration : Spring Security를 활성화
@@ -27,7 +17,7 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-   private final JwtTokenProvider jwtTokenProvider;
+   private final JwtUserTokenProvider jwtUserTokenProvider;
 
     /**
      * Spring Security 5.7.x부터 WebSecurityConfigurerAdapter는
@@ -45,7 +35,7 @@ public class WebSecurityConfig {
                .antMatchers("/users/**").permitAll()
                .antMatchers("/admins/**").hasRole("ADMIN")
                .and()
-               .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
+               .addFilterBefore(new JwtAuthenticationFilter(jwtUserTokenProvider),
                        UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

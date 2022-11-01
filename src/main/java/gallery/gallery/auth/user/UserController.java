@@ -1,5 +1,6 @@
-package gallery.gallery.auth;
+package gallery.gallery.auth.user;
 
+import gallery.gallery.auth.config.JwtUserTokenProvider;
 import gallery.gallery.web.dto.UserDto;
 import gallery.gallery.web.dto.UserLoginDto;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ import javax.validation.Valid;
 @Slf4j
 public class UserController {
     private final UserService userService;
-    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtUserTokenProvider jwtUserTokenProvider;
 
     @GetMapping("/")
     public ResponseEntity<String> index(){
@@ -31,13 +32,13 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@Valid @RequestBody UserLoginDto userLoginDto){
         UserDto ourUser = userService.login(userLoginDto.getNickname());
-        String token = jwtTokenProvider.createToken(ourUser.getNickname(), ourUser.getAccountStatus());
+        String token = jwtUserTokenProvider.createToken(ourUser.getNickname(), ourUser.getAccountStatus());
         return ResponseEntity.ok(token);
     }
 
     @PostMapping("/signup")
     public ResponseEntity<Long> signUp(@Valid @RequestBody UserDto userDto){
-        Long response = userService.save(userDto);
+        Long response = userService.signup(userDto);
         return ResponseEntity.ok(response);
     }
 

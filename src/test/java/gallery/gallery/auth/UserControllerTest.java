@@ -1,7 +1,9 @@
 package gallery.gallery.auth;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import gallery.gallery.auth.user.UserController;
+import gallery.gallery.auth.user.UserRepository;
+import gallery.gallery.auth.user.UserService;
 import gallery.gallery.common.Enum.AccountStatus;
 import gallery.gallery.web.dto.UserDto;
 import org.junit.jupiter.api.Test;
@@ -12,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

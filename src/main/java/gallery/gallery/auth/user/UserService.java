@@ -1,5 +1,6 @@
-package gallery.gallery.auth;
+package gallery.gallery.auth.user;
 
+import gallery.gallery.auth.user.UserRepository;
 import gallery.gallery.domain.user.entity.User;
 import gallery.gallery.web.dto.UserDto;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +31,7 @@ public class UserService implements UserDetailsService {
 
     }
 
-    public Long save(UserDto userDto){
+    public Long signup(UserDto userDto){
         return userRepository.save(User.of(userDto)).getId();
     }
 

@@ -1,36 +1,36 @@
-package gallery.gallery.auth;
+package gallery.gallery.auth.config;
 
 
+import gallery.gallery.auth.admin.AdminService;
+import gallery.gallery.auth.user.UserService;
 import gallery.gallery.common.Enum.AccountStatus;
+import gallery.gallery.common.Enum.Role;
+import gallery.gallery.domain.admin.Admin;
 import gallery.gallery.domain.user.entity.User;
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
-import java.security.PrivateKey;
-import java.util.Base64;
 import java.util.Date;
-import java.util.List;
 
 
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class JwtTokenProvider  {
+public class JwtAdminTokenProvider {
 
     //서명 인코딩에 사용되는 비밀키
-    private static final String key = "secretKeyasdasejhksahekfajhekfnskaaskejbfkabq";
+    private static final String key = "secretKeyAdminjhksahekfajhekfnskaaskejbfkabq";
 
     private static byte[] keyBytes = Decoders.BASE64.decode(key);
 
@@ -38,13 +38,14 @@ public class JwtTokenProvider  {
 
     //토큰 유효시간 30분
     private static long tokenValidTime = 30 * 60 * 1000L;
-    private final UserDetailsService userDetailsService;
+    private final UserService userService;
+    private final AdminService adminService;
 
     //jwt 토큰 생성
-    public static String createToken(String userPk, AccountStatus accountStatus){
+    public static String createToken(String adminPk, Role admin_role){
         //JWT payload에 저장되는 정보단위. user를 식별하는 값을 넣음
-        Claims claims = Jwts.claims().setSubject(userPk);
-        claims.put("MEMBER", accountStatus);
+        Claims claims = Jwts.claims().setSubject(adminPk);
+        claims.put("ADMIN", admin_role);
         //토큰의 시작시작 만료시간 설정
         Date iat = new Date();
         Date exp = new Date(iat.getTime() + tokenValidTime);
@@ -72,12 +73,11 @@ public class JwtTokenProvider  {
 
     //JWT토큰에서 인증 정보 취득
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
-        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+        Admin admin = adminService.loadUserByUsername(this.getAdminPk(token));
+        return new UsernamePasswordAuthenticationToken(admin, "", admin.getAuthorities());
     }
-
     //토큰에서 회원 정보 추출
-    private String getUserPk(String token) {
+    private String getAdminPk(String token) {
         return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject();
     }
 }

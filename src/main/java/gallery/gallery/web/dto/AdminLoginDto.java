@@ -6,13 +6,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class UserLoginDto {
-
+public class AdminLoginDto {
     private String nickname;
     private String password;
 
     @Builder
-    public UserLoginDto(String nickname, String password) {
+    public AdminLoginDto(String nickname, String password) {
         this.nickname = nickname;
         this.password = password;
     }

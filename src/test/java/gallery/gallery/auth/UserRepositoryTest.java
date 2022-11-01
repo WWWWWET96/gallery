@@ -1,14 +1,12 @@
 package gallery.gallery.auth;
 
+import gallery.gallery.auth.user.UserRepository;
 import gallery.gallery.common.Enum.AccountStatus;
 import gallery.gallery.domain.user.entity.User;
 import gallery.gallery.web.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
