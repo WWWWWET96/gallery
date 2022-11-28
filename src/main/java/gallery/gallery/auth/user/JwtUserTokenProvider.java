@@ -1,8 +1,7 @@
-package gallery.gallery.auth.config;
+package gallery.gallery.auth.user;
 
 
-import gallery.gallery.auth.admin.AdminService;
-import gallery.gallery.auth.user.UserService;
+import gallery.gallery.auth.config.admin.AdminService;
 import gallery.gallery.common.Enum.AccountStatus;
 import gallery.gallery.domain.admin.Admin;
 import gallery.gallery.domain.user.entity.User;

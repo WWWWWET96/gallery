@@ -1,5 +1,7 @@
 package gallery.gallery.auth.config;
 
+import gallery.gallery.auth.config.admin.JwtAdminTokenProvider;
+import gallery.gallery.auth.user.JwtUserTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfig {
 
    private final JwtUserTokenProvider jwtUserTokenProvider;
+   private final JwtAdminTokenProvider jwtAdminTokenProvider;
 
     /**
      * Spring Security 5.7.x부터 WebSecurityConfigurerAdapter는
@@ -35,7 +38,9 @@ public class WebSecurityConfig {
                .antMatchers("/users/**").permitAll()
                .antMatchers("/admins/**").hasRole("ADMIN")
                .and()
-               .addFilterBefore(new JwtAuthenticationFilter(jwtUserTokenProvider),
+               .addFilterBefore(new JwtUserAuthenticationFilter(jwtUserTokenProvider),
+                       UsernamePasswordAuthenticationFilter.class)
+               .addFilterBefore(new JwtAdminAuthenticationFilter(jwtAdminTokenProvider),
                        UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

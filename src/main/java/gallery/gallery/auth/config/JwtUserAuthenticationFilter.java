@@ -1,5 +1,6 @@
 package gallery.gallery.auth.config;
 
+import gallery.gallery.auth.user.JwtUserTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +20,7 @@ import java.io.IOException;
 */
 @RequiredArgsConstructor
 @Component
-public class JwtAuthenticationFilter extends GenericFilterBean {
+public class JwtUserAuthenticationFilter extends GenericFilterBean {
     //토큰을 검증하기위한 provider
     private final JwtUserTokenProvider jwtUserTokenProvider;
     //로그인에대한 필터링을 진행
@@ -30,7 +31,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
         //유효한 토큰인지 확인한다.
         if(token != null && jwtUserTokenProvider.validateToken(token)){
             //토큰이 유효하면 토큰으로부터 유저 정보를 받아온다.
-            Authentication authentication = jwtUserTokenProvider.getAuthentication(token);
+            Authentication authentication = jwtUserTokenProvider.getUserAuthentication(token);
             //SecurityContext에 Authentication객체를 저장한다.
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }

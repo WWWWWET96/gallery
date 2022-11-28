@@ -1,7 +1,6 @@
-package gallery.gallery.auth.admin;
+package gallery.gallery.auth.config.admin;
 
 
-import gallery.gallery.auth.admin.AdminRepository;
 import gallery.gallery.domain.admin.Admin;
 import gallery.gallery.web.dto.AdminDto;
 import lombok.RequiredArgsConstructor;

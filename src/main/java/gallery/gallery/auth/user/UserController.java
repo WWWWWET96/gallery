@@ -1,6 +1,5 @@
 package gallery.gallery.auth.user;
 
-import gallery.gallery.auth.config.JwtUserTokenProvider;
 import gallery.gallery.web.dto.UserDto;
 import gallery.gallery.web.dto.UserLoginDto;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,7 @@ public class UserController {
     private final UserService userService;
     private final JwtUserTokenProvider jwtUserTokenProvider;
 
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<String> index(){
         return ResponseEntity.ok("200");
     }

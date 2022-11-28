@@ -18,7 +18,7 @@ import java.util.Collection;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "ADMIN", uniqueConstraints = {@UniqueConstraint(columnNames = {
+@Table(name = "ADMINS", uniqueConstraints = {@UniqueConstraint(columnNames = {
        "email", "nickname"}
 )})
 public class Admin extends BaseEntity implements UserDetails {

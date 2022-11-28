@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @MappedSuperclass
-public class BaseEntity {
+public abstract class BaseEntity {
     //JPA Audit사용
     @CreatedDate
     @Column(name = "created_date", nullable = false, columnDefinition = "TIMESTAMP")

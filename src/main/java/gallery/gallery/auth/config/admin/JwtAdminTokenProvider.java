@@ -1,12 +1,8 @@
-package gallery.gallery.auth.config;
+package gallery.gallery.auth.config.admin;
 
 
-import gallery.gallery.auth.admin.AdminService;
-import gallery.gallery.auth.user.UserService;
-import gallery.gallery.common.Enum.AccountStatus;
 import gallery.gallery.common.Enum.Role;
 import gallery.gallery.domain.admin.Admin;
-import gallery.gallery.domain.user.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -38,7 +34,6 @@ public class JwtAdminTokenProvider {
 
     //토큰 유효시간 30분
     private static long tokenValidTime = 30 * 60 * 1000L;
-    private final UserService userService;
     private final AdminService adminService;
 
     //jwt 토큰 생성

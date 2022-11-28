@@ -1,4 +1,4 @@
-package gallery.gallery.auth.admin;
+package gallery.gallery.auth.config.admin;
 
 import gallery.gallery.domain.admin.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,7 +1,5 @@
-package gallery.gallery.auth.admin;
+package gallery.gallery.auth.config.admin;
 
-import gallery.gallery.auth.config.JwtAdminTokenProvider;
-import gallery.gallery.auth.config.JwtUserTokenProvider;
 import gallery.gallery.web.dto.AdminDto;
 import gallery.gallery.web.dto.AdminLoginDto;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +16,7 @@ import javax.validation.Valid;
 public class AdminController {
     private final AdminService adminService;
     private final JwtAdminTokenProvider jwtAdminTokenProvider;
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<String> index(){
         return ResponseEntity.ok("200");
     }
