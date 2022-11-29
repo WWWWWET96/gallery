@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_HOST}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    # OSIV 설정
+    open-in-view: false
+    properties:
+      hibernate:
+        # 로그에 뜨는 쿼리 포맷팅
+        format_sql: true
+    hibernate:
+      # 테이블 생성옵션
+      ddl-auto: update
+
+# 쿼리문의 ?에 뭐가 들어갔는지 로그로 확인하기
+logging:
+  level:
+    org:
+      hibernate:
+        # 쿼리 로그 보기 (logger 사용)
+        # spring.jpa.properties.hibernate.show_sql와 기능 중복 -> 로거 사용 권장
+        SQL: debug
+        # 쿼리문 로그에 찍히는 ?값 로깅
+        type:
+          descriptor:
+            sql: trace
+
