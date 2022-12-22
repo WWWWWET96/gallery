@@ -1,9 +1,9 @@
 spring:
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:~/gallerytest
-    username: sa
-    password: sa
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${DB_HOST}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     # OSIV 설정
     open-in-view: false
@@ -13,7 +13,7 @@ spring:
         format_sql: true
     hibernate:
       # 테이블 생성옵션
-      ddl-auto: create
+      ddl-auto: update
 
 # 쿼리문의 ?에 뭐가 들어갔는지 로그로 확인하기
 logging:
