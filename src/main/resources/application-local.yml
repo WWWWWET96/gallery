@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: ${DB_HOST_LOCAL}
+  jpa:
+    hibernate:
+      # 테이블 생성옵션
+      ddl-auto: update
