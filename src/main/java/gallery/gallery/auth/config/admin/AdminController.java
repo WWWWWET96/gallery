@@ -1,7 +1,7 @@
 package gallery.gallery.auth.config.admin;
 
-import gallery.gallery.web.dto.AdminDto;
-import gallery.gallery.web.dto.AdminLoginDto;
+import gallery.gallery.dto.AdminDto;
+import gallery.gallery.dto.AdminLoginDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -33,4 +33,5 @@ public class AdminController {
         String token = jwtAdminTokenProvider.createToken(ourAdmin.getNickname(), ourAdmin.getAdmin_role());
         return ResponseEntity.ok(token);
     }
+
 }

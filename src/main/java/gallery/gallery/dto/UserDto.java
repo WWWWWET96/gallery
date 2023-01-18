@@ -1,8 +1,7 @@
-package gallery.gallery.web.dto;
+package gallery.gallery.dto;
 
 import gallery.gallery.common.Enum.AccountStatus;
-import gallery.gallery.domain.art.entity.Art;
-import gallery.gallery.domain.user.entity.User;
+import gallery.gallery.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,5 +35,6 @@ public class UserDto {
                 .accountStatus(user.getAccountStatus())
                 .build();
     }
+
 }
 

@@ -1,8 +1,8 @@
-package gallery.gallery.domain.admin;
+package gallery.gallery.domain;
 
 import gallery.gallery.common.Enum.Role;
 import gallery.gallery.common.base.BaseEntity;
-import gallery.gallery.web.dto.AdminDto;
+import gallery.gallery.dto.AdminDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

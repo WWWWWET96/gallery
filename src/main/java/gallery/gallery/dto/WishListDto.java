@@ -1,6 +1,5 @@
-package gallery.gallery.web.dto;
+package gallery.gallery.dto;
 
-import gallery.gallery.domain.wishList.entity.WishList;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,7 @@
-package gallery.gallery.auth.user;
+package gallery.gallery.auth.config.user;
 
-import gallery.gallery.web.dto.UserDto;
-import gallery.gallery.web.dto.UserLoginDto;
+import gallery.gallery.dto.UserDto;
+import gallery.gallery.dto.UserLoginDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,7 +40,6 @@ public class UserController {
         Long response = userService.signup(userDto);
         return ResponseEntity.ok(response);
     }
-
 
 
 }

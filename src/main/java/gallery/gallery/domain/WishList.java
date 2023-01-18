@@ -1,8 +1,9 @@
-package gallery.gallery.domain.wishList.entity;
+package gallery.gallery.domain;
 
 import gallery.gallery.common.base.BaseEntity;
-import gallery.gallery.domain.art.entity.Art;
-import gallery.gallery.domain.user.entity.User;
+import gallery.gallery.domain.Art;
+import gallery.gallery.domain.User;
+import gallery.gallery.dto.WishListDto;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
@@ -40,5 +41,12 @@ public class WishList extends BaseEntity {
         this.id = id;
         this.user = user;
         this.art = art;
+    }
+
+    public static WishList of(User user, Art art){
+        return WishList.builder()
+                .user(user)
+                .art(art)
+                .build();
     }
 }

@@ -1,6 +1,6 @@
 package gallery.gallery.auth.config;
 
-import gallery.gallery.auth.user.JwtUserTokenProvider;
+import gallery.gallery.auth.config.user.JwtUserTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

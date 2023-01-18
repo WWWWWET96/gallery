@@ -1,8 +1,7 @@
-package gallery.gallery.domain.applicant.entity;
+package gallery.gallery.domain;
 
 import gallery.gallery.common.base.BaseEntity;
-import gallery.gallery.domain.art.entity.Art;
-import gallery.gallery.domain.user.entity.User;
+import gallery.gallery.dto.ApplicantDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,5 +46,16 @@ public class Applicant extends BaseEntity {
         this.user = user;
         this.art = art;
         this.price = price;
+    }
+
+    /**
+     * 지금 문제인거: ApplicantDto에서 user_id, art_id로 되어있는데 이걸 Applicant의 user, art로 연결시켜야함
+     * */
+    public static Applicant of( User user, Art art, ApplicantDto applicantDto){
+       return Applicant.builder()
+               .user(user)
+               .art(art)
+               .price(applicantDto.getPrice())
+               .build();
     }
 }

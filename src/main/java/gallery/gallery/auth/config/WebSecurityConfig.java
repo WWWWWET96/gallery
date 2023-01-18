@@ -1,7 +1,7 @@
 package gallery.gallery.auth.config;
 
 import gallery.gallery.auth.config.admin.JwtAdminTokenProvider;
-import gallery.gallery.auth.user.JwtUserTokenProvider;
+import gallery.gallery.auth.config.user.JwtUserTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

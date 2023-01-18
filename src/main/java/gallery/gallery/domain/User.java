@@ -1,9 +1,9 @@
-package gallery.gallery.domain.user.entity;
+package gallery.gallery.domain;
 
 
 import gallery.gallery.common.Enum.AccountStatus;
 import gallery.gallery.common.base.BaseEntity;
-import gallery.gallery.web.dto.UserDto;
+import gallery.gallery.dto.UserDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

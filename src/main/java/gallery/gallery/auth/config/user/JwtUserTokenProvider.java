@@ -1,10 +1,10 @@
-package gallery.gallery.auth.user;
+package gallery.gallery.auth.config.user;
 
 
 import gallery.gallery.auth.config.admin.AdminService;
 import gallery.gallery.common.Enum.AccountStatus;
-import gallery.gallery.domain.admin.Admin;
-import gallery.gallery.domain.user.entity.User;
+import gallery.gallery.domain.Admin;
+import gallery.gallery.domain.User;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

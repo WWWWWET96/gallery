@@ -1,6 +1,6 @@
 package gallery.gallery.auth.config.admin;
 
-import gallery.gallery.domain.admin.Admin;
+import gallery.gallery.domain.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

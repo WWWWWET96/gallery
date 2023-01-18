@@ -1,6 +1,6 @@
-package gallery.gallery.auth.user;
+package gallery.gallery.auth.config.user;
 
-import gallery.gallery.domain.user.entity.User;
+import gallery.gallery.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

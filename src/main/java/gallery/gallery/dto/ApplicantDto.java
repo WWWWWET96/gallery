@@ -1,8 +1,8 @@
-package gallery.gallery.web.dto;
+package gallery.gallery.dto;
 
-import gallery.gallery.domain.applicant.entity.Applicant;
-import gallery.gallery.domain.art.entity.Art;
-import gallery.gallery.domain.user.entity.User;
+import gallery.gallery.domain.Applicant;
+import gallery.gallery.domain.Art;
+import gallery.gallery.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +22,7 @@ public class ApplicantDto {
         this.art_id = art_id;
         this.price = price;
     }
-    public Applicant toEntity(User user, Art art){
+    public Applicant of(User user, Art art){
        return Applicant.builder()
                 .user(user)
                 .art(art)
