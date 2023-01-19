@@ -12,21 +12,32 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class ApplicantDto {
+    private Long applicant_id;
     private Long user_id;
     private Long art_id;
     private Long price;
-
     @Builder
-    public ApplicantDto(Long user_id, Long art_id, Long price) {
+    public ApplicantDto(Long applicant_id, Long user_id, Long art_id, Long price) {
+        this.applicant_id = applicant_id;
         this.user_id = user_id;
         this.art_id = art_id;
         this.price = price;
     }
-    public Applicant of(User user, Art art){
-       return Applicant.builder()
-                .user(user)
-                .art(art)
-                .price(price)
+    public static ApplicantDto of(Applicant applicant){
+        return ApplicantDto.builder()
+                .applicant_id(applicant.getId())
+                .user_id(applicant.getUser().getId())
+                .art_id(applicant.getArt().getId())
+                .price(applicant.getPrice())
                 .build();
     }
+    public Applicant toEntity(ApplicantDto applicantDto, User user, Art art){
+        return Applicant.builder()
+                .id(applicantDto.getArt_id())
+                .user(user)
+                .art(art)
+                .price(applicantDto.getPrice())
+                .build();
+    }
+
 }

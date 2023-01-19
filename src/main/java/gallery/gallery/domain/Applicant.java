@@ -48,14 +48,5 @@ public class Applicant extends BaseEntity {
         this.price = price;
     }
 
-    /**
-     * 지금 문제인거: ApplicantDto에서 user_id, art_id로 되어있는데 이걸 Applicant의 user, art로 연결시켜야함
-     * */
-    public static Applicant of( User user, Art art, ApplicantDto applicantDto){
-       return Applicant.builder()
-               .user(user)
-               .art(art)
-               .price(applicantDto.getPrice())
-               .build();
-    }
+
 }

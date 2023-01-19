@@ -40,6 +40,7 @@ public class ArtDto {
                 .build();
     }
 
+    /**여기서 static이여야만 하는 이유는?*/
     public static ArtDto of(Art art){
         return ArtDto.builder()
                 .id(art.getId())
