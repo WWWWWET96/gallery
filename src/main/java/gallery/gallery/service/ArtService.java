@@ -3,6 +3,7 @@ package gallery.gallery.service;
 import gallery.gallery.common.error.EntityNotFoundException;
 import gallery.gallery.domain.Art;
 import gallery.gallery.dto.ArtDto;
+import gallery.gallery.repository.ApplicantRepository;
 import gallery.gallery.repository.ArtRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Transactional(readOnly = true)
 public class ArtService {
+    private final ApplicantRepository applicantRepository;
     private final ArtRepository artRepository;
 
     /**
@@ -35,13 +37,11 @@ public class ArtService {
      * 그림작품인 art에 관한 글을 하나 조회하는 로직
      */
     public ArtDto findArtById(Long id) {
-        Optional<Art> byId = artRepository.findById(id);
-        if (byId.isEmpty()) {
-            throw new EntityNotFoundException("해당 게시글이 없습니다.");
-        }
-        Art findArt = byId.get(); // Optional객체에서 꺼내기
+        Art foundArt = artRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("해당 게시글이 없습니다.")
+        );
 
-        return ArtDto.of(findArt);
+        return ArtDto.of(foundArt);
     }
 
     /**
@@ -60,14 +60,12 @@ public class ArtService {
      * 그림작품인 art에 관한 글을 수정하는 로직
      */@Transactional
     public ArtDto updateArt(ArtDto artDto, Long id) {
-        Optional<Art> byId = artRepository.findById(id);
-        if (byId.isEmpty()) {
-            throw new EntityNotFoundException("해당 게시글이 없습니다.");
-        }
-        Art findArt = byId.get();
-        findArt.update(artDto);
+         Art foundArt = artRepository.findById(id).orElseThrow(
+                 () -> new EntityNotFoundException("해당 게시글이 없습니다.")
+         );
+         foundArt.update(artDto);
 
-        return ArtDto.of(findArt);
+        return ArtDto.of(foundArt);
     }
 
     /**
