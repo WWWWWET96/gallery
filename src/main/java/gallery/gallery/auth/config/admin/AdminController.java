@@ -16,12 +16,12 @@ import javax.validation.Valid;
 public class AdminController {
     private final AdminService adminService;
     private final JwtAdminTokenProvider jwtAdminTokenProvider;
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<String> index(){
         return ResponseEntity.ok("200");
     }
 
-    @PostMapping("/signup")
+    @PostMapping
     public ResponseEntity<Long> signup(@Valid@RequestBody AdminDto adminDto){
         Long response = adminService.signup(adminDto);
         return ResponseEntity.ok(response);

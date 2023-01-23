@@ -9,31 +9,32 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/applicant")
 public class ApplicantController {
     private final ApplicantService applicantService;
-    @PostMapping("/applicant/save")
+    @PostMapping
     public ResponseEntity<ApplicantDto> saveApplicant(@RequestBody ApplicantDto applicantDto) throws Exception {
         ApplicantDto response = applicantService.saveApplicant(applicantDto);
 
         return ResponseEntity.ok(response);
     }
-    @GetMapping("/applicant/find/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ApplicantDto> findById(@PathVariable("id") Long id) throws Exception {
         ApplicantDto foundApplicant = applicantService.findById(id);
         return ResponseEntity.ok(foundApplicant);
     }
-    @GetMapping("/applicant/findAll")
+    @GetMapping
     public ResponseEntity<List<ApplicantDto>> findAll() throws Exception {
         List<ApplicantDto> applicants = applicantService.findAll();
 
         return ResponseEntity.ok(applicants);
     }
-    @PatchMapping("/applicant/update/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<ApplicantDto> updatePrice(@PathVariable("id") Long id, Long price) throws Exception {
         ApplicantDto updatedApplicant = applicantService.updatePrice(id, price);
         return ResponseEntity.ok(updatedApplicant);
     }
-    @DeleteMapping("/applicant/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteById(@PathVariable("id") Long id){
         applicantService.deleteById(id);
     }

@@ -35,7 +35,7 @@ public class UserController {
         return ResponseEntity.ok(token);
     }
 
-    @PostMapping("/signup")
+    @PostMapping
     public ResponseEntity<Long> signUp(@Valid @RequestBody UserDto userDto){
         Long response = userService.signup(userDto);
         return ResponseEntity.ok(response);
