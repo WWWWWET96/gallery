@@ -1,11 +1,9 @@
 package gallery.gallery.controller;
 
-import gallery.gallery.Service.ArtService;
-import gallery.gallery.common.Enum.Selling;
+import gallery.gallery.service.ArtService;
+import gallery.gallery.common.enums.Selling;
 import gallery.gallery.dto.ArtDto;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;

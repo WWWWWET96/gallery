@@ -2,7 +2,7 @@ package gallery.gallery.auth.config.user;
 
 
 import gallery.gallery.auth.config.admin.AdminService;
-import gallery.gallery.common.Enum.AccountStatus;
+import gallery.gallery.common.enums.AccountStatus;
 import gallery.gallery.domain.Admin;
 import gallery.gallery.domain.User;
 import io.jsonwebtoken.*;

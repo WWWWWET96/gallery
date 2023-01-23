@@ -1,6 +1,6 @@
 package gallery.gallery.dto;
 
-import gallery.gallery.common.Enum.Selling;
+import gallery.gallery.common.enums.Selling;
 import gallery.gallery.domain.Art;
 import lombok.Builder;
 import lombok.Getter;

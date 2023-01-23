@@ -1,15 +1,12 @@
 package gallery.gallery.domain;
 
-import gallery.gallery.common.Enum.Selling;
-import gallery.gallery.common.base.BaseEntity;
+import gallery.gallery.common.enums.Selling;
 import gallery.gallery.dto.ArtDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.asm.Advice;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -49,21 +46,10 @@ public class Art {
         this.isSelling = isSelling;
     }
 
-//    public static Art of(ArtDto artDto) {
-//        return new Art(
-//                artDto.getId(),
-//                artDto.getAuthor(),
-//                artDto.getArt_name(),
-//                artDto.getReg_date(),
-//                artDto.getClosed_date(),
-//                artDto.getIs_selling()
-//        );
-//    }
-
        public void update(ArtDto artDto){
-        if(!artDto.getAuthor().equals(null))
+        if(!artDto.getAuthor().isEmpty())
             this.author = artDto.getAuthor();
-        if(!artDto.getArt_name().equals(null))
+        if(!artDto.getArt_name().isEmpty())
             this.art_name = artDto.getArt_name();
         if(!artDto.getReg_date().equals(null))
             this.reg_date = artDto.getReg_date();

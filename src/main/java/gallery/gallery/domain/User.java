@@ -1,7 +1,7 @@
 package gallery.gallery.domain;
 
 
-import gallery.gallery.common.Enum.AccountStatus;
+import gallery.gallery.common.enums.AccountStatus;
 import gallery.gallery.common.base.BaseEntity;
 import gallery.gallery.dto.UserDto;
 import lombok.Builder;

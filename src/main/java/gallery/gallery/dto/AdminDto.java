@@ -1,6 +1,6 @@
 package gallery.gallery.dto;
 
-import gallery.gallery.common.Enum.Role;
+import gallery.gallery.common.enums.Role;
 import gallery.gallery.domain.Admin;
 import lombok.Builder;
 import lombok.Getter;

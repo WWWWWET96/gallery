@@ -1,5 +1,5 @@
 package gallery.gallery.controller;
-import gallery.gallery.Service.ArtService;
+import gallery.gallery.service.ArtService;
 import gallery.gallery.dto.ArtDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

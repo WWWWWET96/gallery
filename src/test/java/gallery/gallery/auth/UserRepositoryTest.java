@@ -1,7 +1,7 @@
 package gallery.gallery.auth;
 
 import gallery.gallery.auth.config.user.UserRepository;
-import gallery.gallery.common.Enum.AccountStatus;
+import gallery.gallery.common.enums.AccountStatus;
 import gallery.gallery.domain.User;
 import gallery.gallery.dto.UserDto;
 import org.junit.jupiter.api.Test;

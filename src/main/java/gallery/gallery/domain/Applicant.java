@@ -48,5 +48,7 @@ public class Applicant extends BaseEntity {
         this.price = price;
     }
 
-
+    public void updatePrice(Long price) {
+        this.price = price;
+    }
 }
