@@ -1,5 +1,7 @@
 package gallery.gallery.auth.config.user;
 
+import gallery.gallery.common.error.RestApiException;
+import gallery.gallery.common.error.errorCode.CommonErrorCode;
 import gallery.gallery.domain.User;
 import gallery.gallery.dto.UserDto;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +32,7 @@ public class UserService implements UserDetailsService {
     @Override
     public User loadUserByUsername(String nickname) throws UsernameNotFoundException {
        return userRepository.findByNickname(nickname)
-                .orElseThrow(() -> new UsernameNotFoundException("존재하지 않는 사용자입니다: " + nickname));
+                .orElseThrow(() -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND));
 
     }
     public Long signup(UserDto userDto){

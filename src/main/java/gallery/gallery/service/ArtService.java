@@ -1,9 +1,9 @@
 package gallery.gallery.service;
 
-import gallery.gallery.common.error.EntityNotFoundException;
+import gallery.gallery.common.error.RestApiException;
+import gallery.gallery.common.error.errorCode.CommonErrorCode;
 import gallery.gallery.domain.Art;
 import gallery.gallery.dto.ArtDto;
-import gallery.gallery.repository.ApplicantRepository;
 import gallery.gallery.repository.ArtRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,7 +18,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @Transactional(readOnly = true)
 public class ArtService {
-    private final ApplicantRepository applicantRepository;
     private final ArtRepository artRepository;
 
     /**
@@ -38,7 +36,7 @@ public class ArtService {
      */
     public ArtDto findArtById(Long id) {
         Art foundArt = artRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("해당 게시글이 없습니다.")
+                () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
         );
 
         return ArtDto.of(foundArt);
@@ -50,7 +48,7 @@ public class ArtService {
     public List<ArtDto> findArtByAll() {
         List<Art> artList = artRepository.findAll();
         if (artList.isEmpty()) {
-            throw new EntityNotFoundException("존재하는 게시글이 없습니다.");
+            throw new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND);
         }
 
         return artList.stream().map(ArtDto::of).collect(Collectors.toList());
@@ -61,7 +59,7 @@ public class ArtService {
      */@Transactional
     public ArtDto updateArt(ArtDto artDto, Long id) {
          Art foundArt = artRepository.findById(id).orElseThrow(
-                 () -> new EntityNotFoundException("해당 게시글이 없습니다.")
+                 () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
          );
          foundArt.update(artDto);
 
@@ -76,7 +74,7 @@ public class ArtService {
         boolean isExist = artRepository.existsById(id);
 
         if (!isExist) {
-            throw new EntityNotFoundException("해당 게시글이 없습니다.");
+            throw new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND);
         }
         artRepository.deleteById(id);
     }

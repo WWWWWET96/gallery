@@ -3,7 +3,8 @@ package gallery.gallery.service;
 import java.util.List;
 
 import gallery.gallery.auth.config.user.UserRepository;
-import gallery.gallery.common.error.EntityNotFoundException;
+import gallery.gallery.common.error.RestApiException;
+import gallery.gallery.common.error.errorCode.CommonErrorCode;
 import gallery.gallery.domain.Applicant;
 import gallery.gallery.domain.Art;
 import gallery.gallery.domain.User;
@@ -27,11 +28,11 @@ public class ApplicantService {
     @Transactional
     public ApplicantDto saveApplicant(ApplicantDto applicantDto) throws Exception {
         /** 해당 User, Art 찾기*/
-        User foundUser = userRepository.findById(applicantDto.getUser_id()).orElseThrow(
-                () -> new EntityNotFoundException("해당 user가 존재하지 않습니다.")
+        User foundUser = userRepository.findById(applicantDto.getUserId()).orElseThrow(
+                () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
         );
-        Art foundArt = artRepository.findById(applicantDto.getArt_id()).orElseThrow(
-                () -> new EntityNotFoundException("해당 art가 존재하지 않습니다.")
+        Art foundArt = artRepository.findById(applicantDto.getArtId()).orElseThrow(
+                () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
         );
         Applicant applicant = applicantDto.toEntity(applicantDto, foundUser, foundArt);
         Applicant savedApplicant = applicantRepository.save(applicant);
@@ -41,7 +42,7 @@ public class ApplicantService {
 
     public ApplicantDto findById(Long id) throws Exception {
         Applicant foundApplicant = applicantRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("해당 신청서는 존재하지 않습니다.")
+                () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
         );
         return ApplicantDto.of(foundApplicant);
     }
@@ -49,7 +50,7 @@ public class ApplicantService {
     public List<ApplicantDto> findAll() throws Exception {
         List<Applicant> applicants = applicantRepository.findAll();
         if (applicants.isEmpty()) {
-            throw new Exception("존재하는 신청서가 없습니다.");
+            throw new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND);
         }
         return applicants.stream().map(ApplicantDto::of).collect(Collectors.toList());
     }
@@ -58,7 +59,7 @@ public class ApplicantService {
     @Transactional
     public ApplicantDto updatePrice(Long id, Long price) throws Exception {
         Applicant foundApplicant = applicantRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("해당 신청서는 존재하지 않습니다.")
+                () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
         );
         if (price <= 0) {
             throw new Exception("신청할 수 없는 금액입니다.");
@@ -71,7 +72,7 @@ public class ApplicantService {
     public void deleteById(Long id) {
         boolean isExist = applicantRepository.existsById(id);
         if(!isExist){
-            throw new EntityNotFoundException("해당 신청서는 존재하지 않습니다.");
+            throw new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND);
         }
         applicantRepository.deleteById(id);
     }
