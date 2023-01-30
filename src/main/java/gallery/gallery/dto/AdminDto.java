@@ -10,29 +10,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AdminDto {
     private String nickname;
-    private String admin_name;
+    private String adminName;
     private String password;
     private String phone;
-    private Role admin_role;
+    private Role adminRole;
     private String email;
 
     @Builder
-    public AdminDto(String nickname, String admin_name, String password, String phone, Role admin_role, String email) {
+    public AdminDto(String nickname, String adminName, String password, String phone, Role adminRole, String email) {
         this.nickname = nickname;
-        this.admin_name = admin_name;
+        this.adminName = adminName;
         this.password = password;
         this.phone = phone;
-        this.admin_role = admin_role;
+        this.adminRole = adminRole;
         this.email = email;
     }
 
    public static AdminDto of(Admin admin){
         return AdminDto.builder()
                 .nickname(admin.getNickname())
-                .admin_name(admin.getAdmin_name())
+                .adminName(admin.getAdminName())
                 .password(admin.getPassword())
                 .phone(admin.getPhone())
-                .admin_role(admin.getAdmin_role())
+                .adminRole(admin.getAdminRole())
                 .email(admin.getEmail())
                 .build();
    }

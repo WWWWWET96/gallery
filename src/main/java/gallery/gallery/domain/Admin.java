@@ -18,7 +18,7 @@ import java.util.Collection;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "ADMINS", uniqueConstraints = {@UniqueConstraint(columnNames = {
+@Table(name = "admin", uniqueConstraints = {@UniqueConstraint(columnNames = {
        "email", "nickname"}
 )})
 public class Admin extends BaseEntity implements UserDetails {
@@ -31,7 +31,7 @@ public class Admin extends BaseEntity implements UserDetails {
     private String nickname;
 
     @Column(nullable = false, length = 50)
-    private String admin_name;
+    private String adminName;
 
     @Column(nullable = false, length = 45)
     private String password;
@@ -40,31 +40,31 @@ public class Admin extends BaseEntity implements UserDetails {
     private String phone;
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
-    private Role admin_role;
+    private Role adminRole;
 
     @Column(nullable = false, unique = true, length = 45)
     @Email
     private String email;
 
     @Builder
-    public Admin(LocalDateTime createdDate, LocalDateTime modifiedDate, Long id, String nickname, String admin_name, String password, String phone, Role admin_role, String email) {
+    public Admin(LocalDateTime createdDate, LocalDateTime modifiedDate, Long id, String nickname, String adminName, String password, String phone, Role adminRole, String email) {
         super(createdDate, modifiedDate);
         this.id = id;
         this.nickname = nickname;
-        this.admin_name = admin_name;
+        this.adminName = adminName;
         this.password = password;
         this.phone = phone;
-        this.admin_role = admin_role;
+        this.adminRole = adminRole;
         this.email = email;
     }
 
     public static Admin of(AdminDto adminDto){
        return Admin.builder()
                .nickname(adminDto.getNickname())
-               .admin_name(adminDto.getAdmin_name())
+               .adminName(adminDto.getAdminName())
                .password(adminDto.getPassword())
                .phone(adminDto.getPhone())
-               .admin_role(adminDto.getAdmin_role())
+               .adminRole(adminDto.getAdminRole())
                .email(adminDto.getEmail())
                .build();
     }

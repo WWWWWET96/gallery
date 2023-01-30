@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * */
 @Entity
 @NoArgsConstructor
-@Table(name = "WISHLISTS")
+@Table(name = "wishlist")
 public class WishList extends BaseEntity {
 
     @Id

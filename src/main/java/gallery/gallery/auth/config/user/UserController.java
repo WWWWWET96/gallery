@@ -1,7 +1,7 @@
 package gallery.gallery.auth.config.user;
 
 import gallery.gallery.dto.UserDto;
-import gallery.gallery.dto.RequestDto.UserLoginDto;
+import gallery.gallery.dto.requestDto.UserLoginDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

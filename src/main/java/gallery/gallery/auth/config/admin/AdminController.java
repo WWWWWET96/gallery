@@ -30,7 +30,7 @@ public class AdminController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@Valid @RequestBody AdminLoginDto adminLoginDto){
         AdminDto ourAdmin = adminService.login(adminLoginDto.getNickname());
-        String token = jwtAdminTokenProvider.createToken(ourAdmin.getNickname(), ourAdmin.getAdmin_role());
+        String token = jwtAdminTokenProvider.createToken(ourAdmin.getNickname(), ourAdmin.getAdminRole());
         return ResponseEntity.ok(token);
     }
 

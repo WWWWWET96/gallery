@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Getter
-@Table(name = "APPLICANTS")
+@Table(name = "applicant")
 public class Applicant extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

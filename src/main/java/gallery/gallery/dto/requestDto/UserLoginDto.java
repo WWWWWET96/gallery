@@ -1,4 +1,4 @@
-package gallery.gallery.dto.RequestDto;
+package gallery.gallery.dto.requestDto;
 
 import lombok.Builder;
 import lombok.Getter;
