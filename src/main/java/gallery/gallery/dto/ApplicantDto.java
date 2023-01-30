@@ -7,26 +7,40 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 
 //user_id, art_id정보로 해당 applicant찾아서 가격 수정해주기(다른 객체 아니곡 동일 객체의 값 수정으로 진행할 것
 @Getter
 @NoArgsConstructor
 public class ApplicantDto {
-    private Long user_id;
-    private Long art_id;
+    @NotNull
+    private Long applicantId;
+    private Long userId;
+    private Long artId;
     private Long price;
-
     @Builder
-    public ApplicantDto(Long user_id, Long art_id, Long price) {
-        this.user_id = user_id;
-        this.art_id = art_id;
+    public ApplicantDto(Long applicantId, Long userId, Long artId, Long price) {
+        this.applicantId = applicantId;
+        this.userId = userId;
+        this.artId = artId;
         this.price = price;
     }
-    public Applicant of(User user, Art art){
-       return Applicant.builder()
-                .user(user)
-                .art(art)
-                .price(price)
+    public static ApplicantDto of(Applicant applicant){
+        return ApplicantDto.builder()
+                .applicantId(applicant.getId())
+                .userId(applicant.getUser().getId())
+                .artId(applicant.getArt().getId())
+                .price(applicant.getPrice())
                 .build();
     }
+    public Applicant toEntity(ApplicantDto applicantDto, User user, Art art){
+        return Applicant.builder()
+                .id(applicantDto.getApplicantId())
+                .user(user)
+                .art(art)
+                .price(applicantDto.getPrice())
+                .build();
+    }
+
 }

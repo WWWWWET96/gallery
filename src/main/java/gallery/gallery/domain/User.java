@@ -1,7 +1,7 @@
 package gallery.gallery.domain;
 
 
-import gallery.gallery.common.Enum.AccountStatus;
+import gallery.gallery.common.enums.AccountStatus;
 import gallery.gallery.common.base.BaseEntity;
 import gallery.gallery.dto.UserDto;
 import lombok.Builder;
@@ -24,7 +24,7 @@ import java.util.Collection;
 @Entity
 @NoArgsConstructor
 @Getter
-@Table(name = "USERS", uniqueConstraints = {@UniqueConstraint(columnNames = {
+@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = {
         "nickname", "email"}
 )})
 public class User extends BaseEntity implements UserDetails {

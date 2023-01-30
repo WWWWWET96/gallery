@@ -1,6 +1,8 @@
 package gallery.gallery.auth.config.admin;
 
 
+import gallery.gallery.common.error.RestApiException;
+import gallery.gallery.common.error.errorCode.CommonErrorCode;
 import gallery.gallery.domain.Admin;
 import gallery.gallery.dto.AdminDto;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +23,7 @@ public class AdminService implements UserDetailsService {
     @Override
     public Admin loadUserByUsername(String username) throws UsernameNotFoundException {
       return adminRepository.findByNickname(username)
-              .orElseThrow(()-> new UsernameNotFoundException("존재하지 않는 사용자입니다. :"+ username));
+              .orElseThrow(()-> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND));
     }
     public Long signup(AdminDto adminDto){
         return adminRepository.save(Admin.of(adminDto)).getId();

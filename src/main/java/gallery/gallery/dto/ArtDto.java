@@ -1,6 +1,6 @@
 package gallery.gallery.dto;
 
-import gallery.gallery.common.Enum.Selling;
+import gallery.gallery.common.enums.Selling;
 import gallery.gallery.domain.Art;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,37 +16,39 @@ import java.time.LocalDateTime;
 public class ArtDto {
     private Long id;
     private String author;
-    private String art_name;
-    private LocalDateTime reg_date;
-    private LocalDateTime closed_date;
+    private String artName;
+    private LocalDateTime regDate;
+    private LocalDateTime closedDate;
     private Selling is_selling;
-
     @Builder
-    public ArtDto(Long id, String author, String art_name, LocalDateTime reg_date, LocalDateTime closed_date, Selling is_selling) {
+    public ArtDto(Long id, String author, String artName, LocalDateTime regDate, LocalDateTime closedDate, Selling is_selling) {
         this.id = id;
         this.author = author;
-        this.art_name = art_name;
-        this.reg_date = reg_date;
-        this.closed_date = closed_date;
+        this.artName = artName;
+        this.regDate = regDate;
+        this.closedDate = closedDate;
         this.is_selling = is_selling;
     }
+
+
     public Art toEntity(ArtDto artDto){
         return Art.builder()
-                .art_name(artDto.getArt_name())
+                .artName(artDto.getArtName())
                 .author(artDto.getAuthor())
-                .reg_date(artDto.getReg_date())
-                .closed_date(artDto.getClosed_date())
+                .regDate(artDto.getRegDate())
+                .closedDate(artDto.getClosedDate())
                 .isSelling(artDto.getIs_selling())
                 .build();
     }
 
+    /**여기서 static이여야만 하는 이유는?*/
     public static ArtDto of(Art art){
         return ArtDto.builder()
                 .id(art.getId())
                 .author(art.getAuthor())
-                .art_name(art.getArt_name())
-                .reg_date(art.getReg_date())
-                .closed_date(art.getClosed_date())
+                .artName(art.getArtName())
+                .regDate(art.getRegDate())
+                .closedDate(art.getClosedDate())
                 .is_selling(art.getIsSelling())
                 .build();
     }

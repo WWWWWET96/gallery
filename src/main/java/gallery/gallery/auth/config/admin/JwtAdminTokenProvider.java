@@ -1,7 +1,7 @@
 package gallery.gallery.auth.config.admin;
 
 
-import gallery.gallery.common.Enum.Role;
+import gallery.gallery.common.enums.Role;
 import gallery.gallery.domain.Admin;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;

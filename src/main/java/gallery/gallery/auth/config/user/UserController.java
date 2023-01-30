@@ -1,7 +1,7 @@
 package gallery.gallery.auth.config.user;
 
 import gallery.gallery.dto.UserDto;
-import gallery.gallery.dto.UserLoginDto;
+import gallery.gallery.dto.requestDto.UserLoginDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,7 +35,7 @@ public class UserController {
         return ResponseEntity.ok(token);
     }
 
-    @PostMapping("/signup")
+    @PostMapping
     public ResponseEntity<Long> signUp(@Valid @RequestBody UserDto userDto){
         Long response = userService.signup(userDto);
         return ResponseEntity.ok(response);

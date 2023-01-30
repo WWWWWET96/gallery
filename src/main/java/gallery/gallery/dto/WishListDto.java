@@ -8,14 +8,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class WishListDto {
 
-    private Long user_id;
-    private Long art_id;
+    private Long userId;
+    private Long artId;
 
     @Builder
-    public WishListDto(Long user_id, Long art_id) {
-        this.user_id = user_id;
-        this.art_id = art_id;
+    public WishListDto(Long userId, Long artId) {
+        this.userId = userId;
+        this.artId = artId;
     }
-
-
 }

@@ -13,7 +13,7 @@ spring:
         format_sql: true
     hibernate:
       # 테이블 생성옵션
-      ddl-auto: create
+      ddl-auto: update
 
 # 쿼리문의 ?에 뭐가 들어갔는지 로그로 확인하기
 logging:

@@ -1,4 +1,4 @@
-package gallery.gallery.common.Enum;
+package gallery.gallery.common.enums;
 
 import lombok.Getter;
 

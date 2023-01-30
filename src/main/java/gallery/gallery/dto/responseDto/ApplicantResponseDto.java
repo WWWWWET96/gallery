@@ -1,4 +1,4 @@
-package gallery.gallery.dto.ResponseDto;
+package gallery.gallery.dto.responseDto;
 
 
 import lombok.AllArgsConstructor;
