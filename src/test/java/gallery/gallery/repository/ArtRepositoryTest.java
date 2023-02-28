@@ -1,7 +1,8 @@
 package gallery.gallery.repository;
 
 import gallery.gallery.common.enums.Selling;
-import gallery.gallery.domain.Art;
+import gallery.gallery.general.domain.Art;
+import gallery.gallery.general.repository.ArtRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

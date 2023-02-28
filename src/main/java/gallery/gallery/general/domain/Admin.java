@@ -1,13 +1,11 @@
-package gallery.gallery.domain;
+package gallery.gallery.general.domain;
 
 import gallery.gallery.common.enums.Role;
 import gallery.gallery.common.base.BaseEntity;
-import gallery.gallery.dto.AdminDto;
+import gallery.gallery.general.dto.AdminDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -21,7 +19,7 @@ import java.util.Collection;
 @Table(name = "admin", uniqueConstraints = {@UniqueConstraint(columnNames = {
        "email", "nickname"}
 )})
-public class Admin extends BaseEntity implements UserDetails {
+public class Admin extends BaseEntity  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "admin_id")
@@ -30,7 +28,7 @@ public class Admin extends BaseEntity implements UserDetails {
     @Column(nullable = false, unique = true, length = 30)
     private String nickname;
 
-    @Column(nullable = false, length = 50)
+    @Column(name = "admin_name", nullable = false, length = 50)
     private String adminName;
 
     @Column(nullable = false, length = 45)
@@ -39,7 +37,7 @@ public class Admin extends BaseEntity implements UserDetails {
     @Column(nullable = false, length = 30)
     private String phone;
     @Enumerated(value = EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "admin_role", nullable = false)
     private Role adminRole;
 
     @Column(nullable = false, unique = true, length = 45)
@@ -69,46 +67,46 @@ public class Admin extends BaseEntity implements UserDetails {
                .build();
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> collectors = new ArrayList<>();
-
-        return collectors;
-    }
-
-    @Override
-    public String getUsername() {
-        return nickname;
-    }
-    /**
-     * 계정 만료 여부 반환 true: 만료되지 않았음
-     * */
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    /**
-     * 계정 잠금 여부 반환 true: 잠금되지 않았음
-     * */
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    /**
-     * 패스워드의 만료 여부 반환 true: 만료되지 않았음
-     * */
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    /**
-     * 계정 사용 가능 여부 반환 true : 사용 가능
-     * */
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        Collection<GrantedAuthority> collectors = new ArrayList<>();
+//
+//        return collectors;
+//    }
+//
+//    @Override
+//    public String getUsername() {
+//        return nickname;
+//    }
+//    /**
+//     * 계정 만료 여부 반환 true: 만료되지 않았음
+//     * */
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return true;
+//    }
+//
+//    /**
+//     * 계정 잠금 여부 반환 true: 잠금되지 않았음
+//     * */
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return true;
+//    }
+//
+//    /**
+//     * 패스워드의 만료 여부 반환 true: 만료되지 않았음
+//     * */
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return true;
+//    }
+//
+//    /**
+//     * 계정 사용 가능 여부 반환 true : 사용 가능
+//     * */
+//    @Override
+//    public boolean isEnabled() {
+//        return true;
+//    }
 }

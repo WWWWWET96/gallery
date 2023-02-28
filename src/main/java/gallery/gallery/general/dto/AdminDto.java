@@ -1,7 +1,7 @@
-package gallery.gallery.dto;
+package gallery.gallery.general.dto;
 
 import gallery.gallery.common.enums.Role;
-import gallery.gallery.domain.Admin;
+import gallery.gallery.general.domain.Admin;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

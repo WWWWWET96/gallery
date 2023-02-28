@@ -15,6 +15,10 @@ spring:
     hibernate:
       # 테이블 생성옵션
       ddl-auto: update
+  security:
+    user:
+      name: user
+      password: cc529272-fcc6-4f4d-9158-62e8dda53f78
 
 # 쿼리문의 ?에 뭐가 들어갔는지 로그로 확인하기
 logging:
