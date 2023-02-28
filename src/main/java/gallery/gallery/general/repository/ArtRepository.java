@@ -1,6 +1,6 @@
-package gallery.gallery.repository;
+package gallery.gallery.general.repository;
 
-import gallery.gallery.domain.Art;
+import gallery.gallery.general.domain.Art;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

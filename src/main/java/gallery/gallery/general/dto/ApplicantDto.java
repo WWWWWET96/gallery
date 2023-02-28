@@ -1,8 +1,6 @@
-package gallery.gallery.dto;
+package gallery.gallery.general.dto;
 
-import gallery.gallery.domain.Applicant;
-import gallery.gallery.domain.Art;
-import gallery.gallery.domain.User;
+import gallery.gallery.general.domain.Applicant;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,13 +32,13 @@ public class ApplicantDto {
                 .price(applicant.getPrice())
                 .build();
     }
-    public Applicant toEntity(ApplicantDto applicantDto, User user, Art art){
-        return Applicant.builder()
-                .id(applicantDto.getApplicantId())
-                .user(user)
-                .art(art)
-                .price(applicantDto.getPrice())
-                .build();
-    }
+//    public Applicant toEntity(ApplicantDto applicantDto, User user, Art art){
+//        return Applicant.builder()
+//                .id(applicantDto.getApplicantId())
+//                .user(user)
+//                .art(art)
+//                .price(applicantDto.getPrice())
+//                .build();
+//    }
 
 }

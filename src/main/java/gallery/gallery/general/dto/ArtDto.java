@@ -1,7 +1,7 @@
-package gallery.gallery.dto;
+package gallery.gallery.general.dto;
 
 import gallery.gallery.common.enums.Selling;
-import gallery.gallery.domain.Art;
+import gallery.gallery.general.domain.Art;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,15 +19,15 @@ public class ArtDto {
     private String artName;
     private LocalDateTime regDate;
     private LocalDateTime closedDate;
-    private Selling is_selling;
+    private Selling isSelling;
     @Builder
-    public ArtDto(Long id, String author, String artName, LocalDateTime regDate, LocalDateTime closedDate, Selling is_selling) {
+    public ArtDto(Long id, String author, String artName, LocalDateTime regDate, LocalDateTime closedDate, Selling isSelling) {
         this.id = id;
         this.author = author;
         this.artName = artName;
         this.regDate = regDate;
         this.closedDate = closedDate;
-        this.is_selling = is_selling;
+        this.isSelling = getIsSelling();
     }
 
 
@@ -37,7 +37,7 @@ public class ArtDto {
                 .author(artDto.getAuthor())
                 .regDate(artDto.getRegDate())
                 .closedDate(artDto.getClosedDate())
-                .isSelling(artDto.getIs_selling())
+                .isSelling(artDto.getIsSelling())
                 .build();
     }
 
@@ -49,7 +49,7 @@ public class ArtDto {
                 .artName(art.getArtName())
                 .regDate(art.getRegDate())
                 .closedDate(art.getClosedDate())
-                .is_selling(art.getIsSelling())
+                .isSelling(art.getIsSelling())
                 .build();
     }
 }

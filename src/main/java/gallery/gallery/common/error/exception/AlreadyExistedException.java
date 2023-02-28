@@ -1,11 +1,11 @@
-package gallery.gallery.common.error;
+package gallery.gallery.common.error.exception;
 
 import gallery.gallery.common.error.errorCode.CommonErrorCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Getter
 @RequiredArgsConstructor
-public class RestApiException extends RuntimeException {
+@Getter
+public class AlreadyExistedException extends RuntimeException {
     private final CommonErrorCode commonErrorCode;
 }

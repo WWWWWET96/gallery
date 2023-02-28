@@ -1,16 +1,17 @@
-package gallery.gallery.service;
+package gallery.gallery.general.service;
 
 import java.util.List;
 
-import gallery.gallery.auth.config.user.UserRepository;
-import gallery.gallery.common.error.RestApiException;
+import gallery.gallery.auth.repository.UserRepository;
+import gallery.gallery.common.error.exception.AlreadyExistedException;
+import gallery.gallery.common.error.exception.RestApiException;
 import gallery.gallery.common.error.errorCode.CommonErrorCode;
-import gallery.gallery.domain.Applicant;
-import gallery.gallery.domain.Art;
-import gallery.gallery.domain.User;
-import gallery.gallery.dto.ApplicantDto;
-import gallery.gallery.repository.ApplicantRepository;
-import gallery.gallery.repository.ArtRepository;
+import gallery.gallery.general.domain.Applicant;
+import gallery.gallery.general.domain.Art;
+import gallery.gallery.general.domain.User;
+import gallery.gallery.general.dto.ApplicantDto;
+import gallery.gallery.general.repository.ApplicantRepository;
+import gallery.gallery.general.repository.ArtRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,29 +26,53 @@ public class ApplicantService {
     private final UserRepository userRepository;
     private final ArtRepository artRepository;
 
+//    @Transactional
+//    public ApplicantDto saveApplicant(ApplicantDto applicantDto) throws Exception {
+//        /** 해당 User, Art 찾기*/
+//        User foundUser = userRepository.findById(applicantDto.getUserId()).orElseThrow(
+//                () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
+//        );
+//        Art foundArt = artRepository.findById(applicantDto.getArtId()).orElseThrow(
+//                () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
+//        );
+//        Applicant applicant = applicantDto.toEntity(applicantDto, foundUser, foundArt);
+//        Applicant savedApplicant = applicantRepository.save(applicant);
+//
+//        return ApplicantDto.of(savedApplicant);
+//    }
     @Transactional
-    public ApplicantDto saveApplicant(ApplicantDto applicantDto) throws Exception {
+    public ApplicantDto saveApplicant(Long userId, Long artId, Long price) {
         /** 해당 User, Art 찾기*/
-        User foundUser = userRepository.findById(applicantDto.getUserId()).orElseThrow(
+        User foundUser = userRepository.findById(userId).orElseThrow(
                 () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
         );
-        Art foundArt = artRepository.findById(applicantDto.getArtId()).orElseThrow(
+        Art foundArt = artRepository.findById(artId).orElseThrow(
                 () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
         );
-        Applicant applicant = applicantDto.toEntity(applicantDto, foundUser, foundArt);
+
+        if(applicantRepository.existsApplicant(userId, artId)){
+            throw new AlreadyExistedException(CommonErrorCode.DUPLICATE_RESOURCE);
+        }
+
+        Applicant applicant = Applicant.builder()
+                .user(foundUser)
+                .art(foundArt)
+                .price(price)
+                .build();
+
         Applicant savedApplicant = applicantRepository.save(applicant);
 
         return ApplicantDto.of(savedApplicant);
     }
 
-    public ApplicantDto findById(Long id) throws Exception {
+    public ApplicantDto findById(Long id) {
         Applicant foundApplicant = applicantRepository.findById(id).orElseThrow(
                 () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
         );
         return ApplicantDto.of(foundApplicant);
     }
 
-    public List<ApplicantDto> findAll() throws Exception {
+    public List<ApplicantDto> findAll()  {
         List<Applicant> applicants = applicantRepository.findAll();
         if (applicants.isEmpty()) {
             throw new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND);

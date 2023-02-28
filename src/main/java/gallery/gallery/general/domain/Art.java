@@ -1,7 +1,7 @@
-package gallery.gallery.domain;
+package gallery.gallery.general.domain;
 
 import gallery.gallery.common.enums.Selling;
-import gallery.gallery.dto.ArtDto;
+import gallery.gallery.general.dto.requestDto.ArtUpdateDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,16 +20,16 @@ public class Art {
     @Column(name = "art_id")
     private Long id;
 
-    @Column(nullable = false , length = 50)
+    @Column(nullable = false, length = 50)
     private String author;
 
-    @Column(nullable = false, length = 50)
+    @Column(name = "art_name", nullable = false, length = 50)
     private String artName;
 
-    @Column(nullable = false, columnDefinition = "TIMESTAMP")
+    @Column(name = "reg_date", nullable = false, columnDefinition = "TIMESTAMP")
     private LocalDateTime regDate;
 
-    @Column(nullable = false, columnDefinition = "TIMESTAMP")
+    @Column(name = "closed_date", nullable = false, columnDefinition = "TIMESTAMP")
     private LocalDateTime closedDate;
 
     @Enumerated(value = EnumType.STRING)
@@ -45,18 +45,10 @@ public class Art {
         this.closedDate = closedDate;
         this.isSelling = isSelling;
     }
-
-       public void update(ArtDto artDto){
-        if(!artDto.getAuthor().isEmpty())
-            this.author = artDto.getAuthor();
-        if(!artDto.getArtName().isEmpty())
-            this.artName = artDto.getArtName();
-        if(!artDto.getRegDate().equals(null))
-            this.regDate = artDto.getRegDate();
-        if(!artDto.getClosedDate().equals(null))
-            this.closedDate = artDto.getClosedDate();
-        if(!artDto.getIs_selling().equals(null))
-            this.isSelling = artDto.getIs_selling();
+    public void update(ArtUpdateDto artUpdateDto) {
+        this.regDate = artUpdateDto.getRegDate();
+        this.closedDate = artUpdateDto.getClosedDate();
+        this.isSelling = artUpdateDto.getIsSelling();
     }
 
 }

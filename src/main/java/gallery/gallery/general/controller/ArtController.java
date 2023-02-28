@@ -1,6 +1,7 @@
-package gallery.gallery.controller;
-import gallery.gallery.service.ArtService;
-import gallery.gallery.dto.ArtDto;
+package gallery.gallery.general.controller;
+import gallery.gallery.general.dto.requestDto.ArtUpdateDto;
+import gallery.gallery.general.service.ArtService;
+import gallery.gallery.general.dto.ArtDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/art")
+@RequestMapping("/arts")
 public class ArtController {
     private final ArtService artService;
 
@@ -33,8 +34,8 @@ public class ArtController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ArtDto> updateArt(@RequestBody ArtDto artDto, @PathVariable("id") Long id ){
-        ArtDto response = artService.updateArt(artDto, id);
+    public ResponseEntity<ArtDto> updateArt(@RequestBody ArtUpdateDto artUpdateDto, @PathVariable("id") Long id ){
+        ArtDto response = artService.updateArt(artUpdateDto, id);
         return ResponseEntity.ok(response);
     }
 

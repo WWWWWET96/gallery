@@ -1,10 +1,11 @@
-package gallery.gallery.service;
+package gallery.gallery.general.service;
 
-import gallery.gallery.common.error.RestApiException;
+import gallery.gallery.common.error.exception.RestApiException;
 import gallery.gallery.common.error.errorCode.CommonErrorCode;
-import gallery.gallery.domain.Art;
-import gallery.gallery.dto.ArtDto;
-import gallery.gallery.repository.ArtRepository;
+import gallery.gallery.general.domain.Art;
+import gallery.gallery.general.dto.ArtDto;
+import gallery.gallery.general.dto.requestDto.ArtUpdateDto;
+import gallery.gallery.general.repository.ArtRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -57,11 +58,11 @@ public class ArtService {
     /**
      * 그림작품인 art에 관한 글을 수정하는 로직
      */@Transactional
-    public ArtDto updateArt(ArtDto artDto, Long id) {
+    public ArtDto updateArt(ArtUpdateDto artUpdateDto, Long id) {
          Art foundArt = artRepository.findById(id).orElseThrow(
                  () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
          );
-         foundArt.update(artDto);
+         foundArt.update(artUpdateDto);
 
         return ArtDto.of(foundArt);
     }

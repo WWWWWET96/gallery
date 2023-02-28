@@ -1,6 +1,8 @@
 package gallery.gallery.common.error;
 
 import gallery.gallery.common.error.errorResponse.ErrorResponse;
+import gallery.gallery.common.error.exception.AlreadyExistedException;
+import gallery.gallery.common.error.exception.RestApiException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,9 +40,15 @@ public class GlobalExceptionHandler{
 
     @ExceptionHandler(RestApiException.class)
     public ResponseEntity<ErrorResponse> handleRestApiException(RestApiException e){
-        log.error("handleCustomException throw CustomException : ", e.getCommonErrorCode());
+        log.error("handleRestApiException throw RestApiException: ", e.getCommonErrorCode());
 
       return ErrorResponse.toResponseEntity(e.getCommonErrorCode());
+    }
+
+    @ExceptionHandler(AlreadyExistedException.class)
+    public ResponseEntity<ErrorResponse> handleAlreadyExistedException(AlreadyExistedException e){
+        log.error("handleAlreadyExistedException throw AlreadyExistedException: ", e.getCommonErrorCode());
+        return ErrorResponse.toResponseEntity(e.getCommonErrorCode());
     }
 }
 

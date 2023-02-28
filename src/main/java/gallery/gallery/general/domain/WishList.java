@@ -1,9 +1,7 @@
-package gallery.gallery.domain;
+package gallery.gallery.general.domain;
 
 import gallery.gallery.common.base.BaseEntity;
-import gallery.gallery.dto.ApplicantDto;
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -14,17 +12,15 @@ import java.time.LocalDateTime;
  * PK: id
  * FK: user, art
  * */
-
 @Entity
 @NoArgsConstructor
-@Getter
-@Table(name = "applicant")
-public class Applicant extends BaseEntity {
+@Table(name = "wishlist")
+public class WishList extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "applicant_id")
+    @Column(name = "wishlist_id")
     private Long id;
-    //@JoinColumn: 엔티티간 조인과는 관계없이 외래키 이름 지정을 위해서 사용됨. 생략가능
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -36,19 +32,18 @@ public class Applicant extends BaseEntity {
     @NotNull
     private Art art;
 
-    @Column(name = "price", nullable = false, length = 30)
-    private Long price;
-
     @Builder
-    public Applicant(LocalDateTime createdDate, LocalDateTime modifiedDate, Long id, User user, Art art, Long price) {
+    public WishList(LocalDateTime createdDate, LocalDateTime modifiedDate, Long id, User user, Art art) {
         super(createdDate, modifiedDate);
         this.id = id;
         this.user = user;
         this.art = art;
-        this.price = price;
     }
 
-    public void updatePrice(Long price) {
-        this.price = price;
+    public static WishList of(User user, Art art){
+        return WishList.builder()
+                .user(user)
+                .art(art)
+                .build();
     }
 }
