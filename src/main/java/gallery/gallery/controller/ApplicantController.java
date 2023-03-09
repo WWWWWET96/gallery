@@ -6,16 +6,20 @@ import gallery.gallery.dto.ApplicantDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/applicant")
 public class ApplicantController {
     private final ApplicantService applicantService;
     @PostMapping
+<<<<<<< main:src/main/java/gallery/gallery/controller/ApplicantController.java
     public ResponseEntity<ApplicantDto> saveApplicant(@RequestBody ApplicantDto applicantDto) throws Exception {
         ApplicantDto response = applicantService.saveApplicant(applicantDto);
 
+=======
+    public ResponseEntity<ApplicantDto> saveApplicant(Long userId, Long artId, Long price) throws Exception {
+        ApplicantDto response = applicantService.saveApplicant(userId, artId, price);
+>>>>>>> feat: [art] 페이징 기능(#17):src/main/java/gallery/gallery/general/controller/ApplicantController.java
         return ResponseEntity.ok(response);
     }
     @GetMapping("/{id}")

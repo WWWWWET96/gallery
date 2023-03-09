@@ -12,6 +12,7 @@ import gallery.gallery.dto.ApplicantDto;
 import gallery.gallery.repository.ApplicantRepository;
 import gallery.gallery.repository.ArtRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
