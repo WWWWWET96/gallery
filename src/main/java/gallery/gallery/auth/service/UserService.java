@@ -15,8 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import static gallery.gallery.common.error.errorCode.CommonErrorCode.DUPLICATE_RESOURCE;
-import static gallery.gallery.common.error.errorCode.CommonErrorCode.RESOURCE_NOT_FOUND;
+import static gallery.gallery.common.error.errorCode.CommonErrorCode.*;
 
 /**
  * 스프링시큐리티 대신 일반 게시글처럼 저장하고 유효성검사를 따로 해주는 식으로 user, admin 진행하기
@@ -49,9 +48,11 @@ public class UserService {
         );
         //비밀번호 확인
         if (!bCryptPasswordEncoder.matches(password, user.get().getPassword())) {
-            throw new IllegalArgumentException("Wrong Password");
+            throw new RestApiException(INVALID_PARAMETER);
         }
+        //토큰 유효기간 확인
         TokenDto token = jwtService.createToken(user.get().getNickname());
+        //TokenDto tokenByRefreshToken = jwtService.createTokenByRefreshToken(token.getRefreshToken());
         return token;
 
     }
