@@ -6,7 +6,6 @@ import gallery.gallery.general.dto.ApplicantDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/applicants")
@@ -21,7 +20,6 @@ public class ApplicantController {
     @PostMapping
     public ResponseEntity<ApplicantDto> saveApplicant(Long userId, Long artId, Long price) throws Exception {
         ApplicantDto response = applicantService.saveApplicant(userId, artId, price);
-
         return ResponseEntity.ok(response);
     }
     @GetMapping("/{id}")

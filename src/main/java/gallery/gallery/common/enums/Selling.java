@@ -11,5 +11,4 @@ public enum Selling {
     CLOSED("판매완료");
 
     private final String selling;
-
 }
