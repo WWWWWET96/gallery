@@ -2,6 +2,7 @@ package gallery.gallery.general.domain;
 
 import gallery.gallery.common.base.BaseEntity;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Table(name = "wishlist")
+@Getter
 public class WishList extends BaseEntity {
 
     @Id
