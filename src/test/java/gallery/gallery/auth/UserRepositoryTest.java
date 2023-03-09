@@ -1,9 +1,9 @@
 package gallery.gallery.auth;
 
-import gallery.gallery.auth.repository.UserRepository;
+import gallery.gallery.auth.config.user.UserRepository;
 import gallery.gallery.common.enums.AccountStatus;
-import gallery.gallery.general.domain.User;
-import gallery.gallery.general.dto.UserDto;
+import gallery.gallery.domain.User;
+import gallery.gallery.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
