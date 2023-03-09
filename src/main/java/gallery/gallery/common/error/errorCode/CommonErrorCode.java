@@ -14,7 +14,8 @@ public enum CommonErrorCode implements ErrorCode {
     INVALID_PARAMETER(HttpStatus.BAD_REQUEST, "Invalid parameter included"),
     RESOURCE_NOT_FOUND(HttpStatus.NOT_FOUND, "Resource not exists"),
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error"),
-    DUPLICATE_RESOURCE(HttpStatus.CONFLICT, "Data already existed")
+    DUPLICATE_RESOURCE(HttpStatus.CONFLICT, "Data already existed"),
+    DATA_NOT_THE_SAME(HttpStatus.BAD_REQUEST, "Data is not the same")
             ;
 
    private final HttpStatus httpStatus;

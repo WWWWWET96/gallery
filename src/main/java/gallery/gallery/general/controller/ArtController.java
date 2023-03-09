@@ -1,12 +1,21 @@
 package gallery.gallery.general.controller;
+import java.util.List;
+
+import gallery.gallery.common.error.errorCode.CommonErrorCode;
+import gallery.gallery.common.error.exception.NotEqualException;
+import gallery.gallery.common.error.exception.RestApiException;
+import gallery.gallery.general.dto.WishListDto;
 import gallery.gallery.general.dto.requestDto.ArtUpdateDto;
 import gallery.gallery.general.service.ArtService;
 import gallery.gallery.general.dto.ArtDto;
+import gallery.gallery.general.service.WishListService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,10 +36,18 @@ public class ArtController {
         return ResponseEntity.ok(response);
     }
 
+
+
     @GetMapping
-    public ResponseEntity<List<ArtDto>> findArtByAll(){
-        List<ArtDto> responses = artService.findArtByAll();
-        return ResponseEntity.ok(responses);
+    public ResponseEntity<List<ArtDto>> findArtByAll(@PageableDefault(size = 5, sort = "id",
+            direction = Sort.Direction.DESC) Pageable pageable,
+                                                     @RequestParam(required = false)String searchKeyword
+            ,@RequestParam(required = false)String searchType){
+
+        /**
+         * 질문: 페이징할 때 return타입이 굳이 Page<>가아니여도 되는건가? </>*/
+        List<ArtDto> response = artService.findArtByAll(searchType, searchKeyword, pageable);
+        return ResponseEntity.ok(response);
     }
 
     @PatchMapping("/{id}")
