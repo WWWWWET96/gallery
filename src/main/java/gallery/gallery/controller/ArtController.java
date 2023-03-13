@@ -1,23 +1,8 @@
-<<<<<<< main:src/main/java/gallery/gallery/controller/ArtController.java
 package gallery.gallery.controller;
 import gallery.gallery.service.ArtService;
 import gallery.gallery.dto.ArtDto;
-=======
-package gallery.gallery.general.controller;
 import java.util.List;
 
-import gallery.gallery.common.error.errorCode.CommonErrorCode;
-import gallery.gallery.common.error.exception.NotEqualException;
-import gallery.gallery.common.error.exception.RestApiException;
-import gallery.gallery.general.dto.WishListDto;
-import gallery.gallery.general.dto.requestDto.ArtUpdateDto;
-import gallery.gallery.general.service.ArtService;
-import gallery.gallery.general.dto.ArtDto;
-import gallery.gallery.general.service.WishListService;
-<<<<<<< HEAD:src/main/java/gallery/gallery/controller/ArtController.java
->>>>>>> feat: [art] 페이징 기능(#17):src/main/java/gallery/gallery/general/controller/ArtController.java
-=======
->>>>>>> user(#13):src/main/java/gallery/gallery/general/controller/ArtController.java
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;

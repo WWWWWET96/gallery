@@ -25,22 +25,25 @@ public class ApplicantService {
     private final ApplicantRepository applicantRepository;
     private final UserRepository userRepository;
     private final ArtRepository artRepository;
-
     @Transactional
-    public ApplicantDto saveApplicant(ApplicantDto applicantDto) throws Exception {
-        /** 해당 User, Art 찾기*/
-        User foundUser = userRepository.findById(applicantDto.getUserId()).orElseThrow(
-                () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
-        );
-        Art foundArt = artRepository.findById(applicantDto.getArtId()).orElseThrow(
-                () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
-        );
-        Applicant applicant = applicantDto.toEntity(applicantDto, foundUser, foundArt);
-        Applicant savedApplicant = applicantRepository.save(applicant);
+    public ApplicantDto saveApplicant(Long userId, Long artId, Long price) {
+            /** 해당 User, Art 찾기*/
+            User foundUser = userRepository.findById(userId).orElseThrow(
+                            () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
+                    );
+            Art foundArt = artRepository.findById(artId).orElseThrow(
+                            () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
+                    );
 
-        return ApplicantDto.of(savedApplicant);
-    }
+            Applicant applicant = Applicant.builder()
+                    .user(foundUser)
+                    .art(foundArt)
+                    .price(price)
+                    .build();
+            Applicant savedApplicant = applicantRepository.save(applicant);
 
+            return ApplicantDto.of(savedApplicant);
+        }
     public ApplicantDto findById(Long id) throws Exception {
         Applicant foundApplicant = applicantRepository.findById(id).orElseThrow(
                 () -> new RestApiException(CommonErrorCode.RESOURCE_NOT_FOUND)
