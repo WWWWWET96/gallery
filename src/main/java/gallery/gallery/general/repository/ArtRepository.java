@@ -1,7 +1,7 @@
-package gallery.gallery.repository;
+package gallery.gallery.general.repository;
 
-import gallery.gallery.domain.Art;
 import gallery.gallery.common.enums.Selling;
+import gallery.gallery.general.domain.Art;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

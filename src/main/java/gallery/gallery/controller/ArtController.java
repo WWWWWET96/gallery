@@ -14,7 +14,10 @@ import gallery.gallery.general.dto.requestDto.ArtUpdateDto;
 import gallery.gallery.general.service.ArtService;
 import gallery.gallery.general.dto.ArtDto;
 import gallery.gallery.general.service.WishListService;
+<<<<<<< HEAD:src/main/java/gallery/gallery/controller/ArtController.java
 >>>>>>> feat: [art] 페이징 기능(#17):src/main/java/gallery/gallery/general/controller/ArtController.java
+=======
+>>>>>>> user(#13):src/main/java/gallery/gallery/general/controller/ArtController.java
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -41,8 +44,6 @@ public class ArtController {
         ArtDto response = artService.findArtById(id);
         return ResponseEntity.ok(response);
     }
-
-
 
     @GetMapping
     public ResponseEntity<List<ArtDto>> findArtByAll(@PageableDefault(size = 5, sort = "id",

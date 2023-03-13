@@ -1,11 +1,8 @@
 package gallery.gallery.service;
 
-<<<<<<< main:src/main/java/gallery/gallery/service/ArtService.java
+
 import gallery.gallery.common.error.RestApiException;
-=======
 import gallery.gallery.common.enums.Selling;
-import gallery.gallery.common.error.exception.RestApiException;
->>>>>>> feat: [art] 페이징 기능(#17):src/main/java/gallery/gallery/general/service/ArtService.java
 import gallery.gallery.common.error.errorCode.CommonErrorCode;
 import gallery.gallery.domain.Art;
 import gallery.gallery.dto.ArtDto;
