@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/arts")
 public class ArtController {
     private final ArtService artService;
+    private final WishListService wishListService;
 
     @PostMapping
     public ResponseEntity<ArtDto> saveArt(@RequestBody ArtDto artDto){
@@ -36,7 +37,18 @@ public class ArtController {
         return ResponseEntity.ok(response);
     }
 
+    @PostMapping("/{id}")
+    public ResponseEntity<WishListDto> wishListById(@PathVariable("id") Long id, @RequestBody WishListDto wishListDto)
+    {/**
+     * pathVaiable로 받은 id와 wishListDto.artId가 같지 않을 경우 exception 발생
+     * */
+        if(wishListDto.getArtId() != id){
+            throw new NotEqualException(CommonErrorCode.DATA_NOT_THE_SAME);
+        }
+        WishListDto response = wishListService.saveWishList(wishListDto);
+        return ResponseEntity.ok(response);
 
+    }
 
     @GetMapping
     public ResponseEntity<List<ArtDto>> findArtByAll(@PageableDefault(size = 5, sort = "id",
